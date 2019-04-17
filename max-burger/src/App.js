@@ -27,6 +27,18 @@ class App extends Component {
     });
   }
 
+  //event is an object, this method we pass to Erin
+  nameChangeHandler = (event) => {
+    this.setState({
+      ppl: [
+        { name: 'Max', age: 28 },
+        { name: event.target.value, age: 18 },
+        { name: 'Sam', age: 1000000 }
+      ]
+    })
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -40,7 +52,8 @@ class App extends Component {
         <CanbeAnything
           name={this.state.ppl[1].name}
           age={this.state.ppl[1].age}
-          click={this.switchNameHandler.bind(this, 'MAXXXXX2.0')} />
+          click={this.switchNameHandler.bind(this, 'MAXXXXX2.0')}
+          changedErin={this.nameChangeHandler} />
 
         <CanbeAnything
           name={this.state.ppl[2].name}
