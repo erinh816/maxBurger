@@ -5,6 +5,8 @@ import './App.css';
 import CanbeAnything from './Person/Person';
 // the Person after import can be anything
 
+
+
 class App extends Component {
   //state is an object
   state = {
@@ -40,11 +42,21 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1> Hi This is Another Burger App </h1>
         <p> This is really working </p>
-        <button onClick={this.switchNameHandler.bind(this, 'MAXXXX1.0')}>Switch Name</button>
+        <button
+          style={style}
+          onClick={this.switchNameHandler.bind(this, 'MAXXXX1.0')}>Switch Name</button>
         <CanbeAnything
           name={this.state.ppl[0].name}
           age={this.state.ppl[0].age} />
