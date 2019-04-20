@@ -11,9 +11,9 @@ class App extends Component {
   //state is an object
   state = {
     ppl: [
-      { name: 'Max', age: 28 },
-      { name: 'Erin', age: 18 },
-      { name: 'Sam', age: 66 }
+      { id: 'hieuhwueh', name: 'Max', age: 28 },
+      { id: 'jhweuuweu', name: 'Erin', age: 18 },
+      { id: 'hwieuwhue', name: 'Sam', age: 66 }
     ],
     // we set it false initially, we don't want to show it
     //this is for ToggleHandler
@@ -35,6 +35,9 @@ class App extends Component {
 
   deletePersonHandler = (personIndex) => {
     const deletedperson = this.state.ppl;
+    //above is bad practice because it mutetes the original copy we could change it to this.state.ppl.slice()
+    //but we can also use a es6 feture spread ...
+    // const deletedperson = [...this.state.ppl];
     deletedperson.splice(personIndex, 1);
     this.setState({ deletedperson: deletedperson })
   }
@@ -79,7 +82,9 @@ class App extends Component {
             return <CanbeAnything
               click={() => this.deletePersonHandler(indexwow)}
               name={wow.name}
-              age={wow.age} />
+              age={wow.age}
+              key={wow.id}
+              changedErin={this.nameChangeHandler} />
           })}
 
           {/* so now we can get rid of below */}
