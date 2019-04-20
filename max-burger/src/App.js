@@ -14,7 +14,10 @@ class App extends Component {
       { name: 'Max', age: 28 },
       { name: 'Erin', age: 18 },
       { name: 'Sam', age: 66 }
-    ]
+    ],
+    // we set it false initially, we don't want to show it
+    //this is for ToggleHandler
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -41,6 +44,14 @@ class App extends Component {
 
   }
 
+  togglePersonsHandler = () => {
+    // const doesShow = this.state.showPersons;
+    // this.setState({ showPersons: !doesShow })
+    // or just
+    this.setState({ showPersons: !this.state.showPersons });
+
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -56,24 +67,30 @@ class App extends Component {
         <p> This is really working </p>
         <button
           style={style}
-          onClick={this.switchNameHandler.bind(this, 'MAXXXX1.0')}>Switch Name</button>
-        <CanbeAnything
-          name={this.state.ppl[0].name}
-          age={this.state.ppl[0].age} />
-        {/* this refers to class App */}
-        <CanbeAnything
-          name={this.state.ppl[1].name}
-          age={this.state.ppl[1].age}
-          click={this.switchNameHandler.bind(this, 'MAXXXXX2.0')}
-          changedErin={this.nameChangeHandler} />
+          onClick={this.togglePersonsHandler}>NOW I'm Toggle</button>
+        {  //if this.state.showPersons is true, we will show the inner div
+          this.state.showPersons ?
+            //or this.state.showPersons === true ?
+            <div>
+              <CanbeAnything
+                name={this.state.ppl[0].name}
+                age={this.state.ppl[0].age} />
+              {/* this refers to class App */}
+              <CanbeAnything
+                name={this.state.ppl[1].name}
+                age={this.state.ppl[1].age}
+                click={this.switchNameHandler.bind(this, 'MAXXXXX2.0')}
+                changedErin={this.nameChangeHandler} />
 
-        <CanbeAnything
-          name={this.state.ppl[2].name}
-          age={this.state.ppl[2].age}>My Hobbies:Rave</CanbeAnything>
-        {/* down is an example of hard coded one without using state */}
-        <CanbeAnything
-          name="Lucy"
-          age="22" />
+              <CanbeAnything
+                name={this.state.ppl[2].name}
+                age={this.state.ppl[2].age}>My Hobbies:Rave</CanbeAnything>
+              {/* down is an example of hard coded one without using state */}
+              <CanbeAnything
+                name="Lucy"
+                age="22" />
+            </div> : null
+        }
       </div>
     );
   }
