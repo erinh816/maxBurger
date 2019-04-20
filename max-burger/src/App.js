@@ -20,16 +20,23 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // console.log('was clicked');
-    //DON"T DO THIS this.state.ppl[0].name = 'Minimum';
-    this.setState({
-      ppl: [
-        { name: newName, age: 28 },
-        { name: 'Erin', age: 18 },
-        { name: 'Sam', age: 1000000 }
-      ]
-    });
+  //***commented this handler out for lecture 55, how to convert!!!
+  // switchNameHandler = (newName) => {
+  //   // console.log('was clicked');
+  //   //DON"T DO THIS this.state.ppl[0].name = 'Minimum';
+  //   this.setState({
+  //     ppl: [
+  //       { name: newName, age: 28 },
+  //       { name: 'Erin', age: 18 },
+  //       { name: 'Sam', age: 1000000 }
+  //     ]
+  //   });
+  // }
+
+  deletePersonHandler = (personIndex) => {
+    const deletedperson = this.state.ppl;
+    deletedperson.splice(personIndex, 1);
+    this.setState({ deletedperson: deletedperson })
   }
 
   //event is an object, this method we pass to Erin
@@ -68,8 +75,9 @@ class App extends Component {
       persons = (
         //in here we will delete the div of all <CanbeAnything> and copy in hrere
         <div>
-          {this.state.ppl.map(wow => {
+          {this.state.ppl.map((wow, indexwow) => {
             return <CanbeAnything
+              click={() => this.deletePersonHandler(indexwow)}
               name={wow.name}
               age={wow.age} />
           })}
