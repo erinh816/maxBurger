@@ -43,15 +43,29 @@ class App extends Component {
   }
 
   //event is an object, this method we pass to Erin
-  nameChangeHandler = (event) => {
-    this.setState({
-      ppl: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 18 },
-        { name: 'Sam', age: 1000000 }
-      ]
-    })
+  nameChangeHandler = (event, id) => {
+    const singleIndex = this.state.ppl.findIndex(yay => {
+      return yay.id === id; //true or false
+    });
 
+    const singlePerson = {
+      ...this.state.ppl[singleIndex]
+    };
+
+    //alternative way
+    // const wow = Object.assign({}, this.state.ppl[singleIndex]);
+    singlePerson.name = event.target.value;
+    const ppl = [...this.state.ppl];
+    // const ppl = [this.state.ppl.slice()];
+    ppl[singleIndex] = singlePerson;
+    this.setState({
+      ppl: ppl
+      // ppl: [
+      //   { name: 'Max', age: 28 },
+      //   { name: event.target.value, age: 18 },
+      //   { name: 'Sam', age: 1000000 }
+      // ]
+    })
   }
 
   togglePersonsHandler = () => {
@@ -84,7 +98,7 @@ class App extends Component {
               name={wow.name}
               age={wow.age}
               key={wow.id}
-              changedErin={this.nameChangeHandler} />
+              changedErin={(event) => this.nameChangeHandler(event, wow.id)} />
           })}
 
           {/* so now we can get rid of below */}
