@@ -78,7 +78,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -121,12 +122,26 @@ class App extends Component {
             age="22" /> */}
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
+
+    // let classes = ['red', 'bold'].join(' '); //must be a space between''
+    //make css dynamic according to the numnber of persons
+    const classes = [];
+    if (this.state.ppl.length <= 2) {
+      classes.push('red'); //classes = ['red]
+    }
+    if (this.state.ppl.length <= 1) {
+      classes.push('bold'); //classes=['red','bold']
+    }
+
+
 
     return (
       <div className="App">
         <h1> Hi This is Another Burger App </h1>
-        <p> This is really working </p>
+        <p className={classes.join(' ')}> This is really working </p>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>NOW I'm Toggle</button>
