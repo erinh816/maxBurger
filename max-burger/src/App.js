@@ -5,7 +5,7 @@ import './App.css';
 import CanbeAnything from './Person/Person';
 // the Person after import can be anything
 
-import Radium, { StyleRoot } from 'radium';
+// import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   //state is an object
@@ -84,10 +84,10 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      // ':hover': {
+      //   backgroundColor: 'lightgreen',
+      //   color: 'black'
+      // }
     };
 
     let persons = null;
@@ -128,10 +128,10 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'yellow',
-        color: 'black'
-      }
+      // style[':hover'] = {
+      //   backgroundColor: 'yellow',
+      //   color: 'black'
+      // }
     }
 
     // let classes = ['red', 'bold'].join(' '); //must be a space between''
@@ -147,23 +147,23 @@ class App extends Component {
 
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1> Hi This is Another Burger App </h1>
-          <p className={classes.join(' ')}> This is really working </p>
-          <button
-            style={style}
-            onClick={this.togglePersonsHandler}>NOW I'm Toggle</button>
-          {persons}
-        </div>
-      </StyleRoot>
+
+      <div className="App">
+        <h1> Hi This is Another Burger App </h1>
+        <p className={classes.join(' ')}> This is really working </p>
+        <button
+          style={style}
+          onClick={this.togglePersonsHandler}>NOW I'm Toggle</button>
+        {persons}
+      </div>
+
     );
   }
 }
 
-// export default App;
+export default App;
 
-export default Radium(App); //after we import Radium package
+// export default Radium(App); //after we import Radium package
 
 
 //******how to use the new feature hooks******
