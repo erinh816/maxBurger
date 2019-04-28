@@ -13,6 +13,14 @@ const person = (props) => {
     //500px is a threshold, if we go above it(the window), it'll stay fixed 450px
     //if we go below it, it'll be the 60% of the window width(changing)
 
+    //a way to detect error
+    const rnd = Math.random();
+
+    if (rnd > 0.7) {
+        throw new Error('Something went wrong');
+    }
+    //sometimes it fails, sometimes works depends on the random number
+
     return (
         //style will overwrite className
         <div className="Person" >

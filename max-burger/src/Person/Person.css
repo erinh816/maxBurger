@@ -1,4 +1,6 @@
-/* Why is this globally */
+/* Why is this globally */ 
+/* because even it's in Person file, it's probably still going to affect other components */
+/* That's why we need a way to make person.js and person.css scoped to each other to only work inside of Person file */
 .Person{
 width:60%;
 margin:16px auto;
@@ -10,9 +12,9 @@ text-align:center;
 
 
 /* traditional media queries */
-@media(min-width:500px){
+/* @media(min-width:500px){
     .Person{
         width:450px;
     }
-}
+} */
 

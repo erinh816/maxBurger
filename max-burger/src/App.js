@@ -7,6 +7,9 @@ import CanbeAnything from './Person/Person';
 
 // import Radium, { StyleRoot } from 'radium';
 
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+//we are going to test on our <CanbeAnything> which will be wrapped because EB is a higher order component
+
 class App extends Component {
   //state is an object
   state = {
@@ -98,12 +101,15 @@ class App extends Component {
         //in here we will delete the div of all <CanbeAnything> and copy in hrere
         <div>
           {this.state.ppl.map((wow, indexwow) => {
-            return <CanbeAnything
-              click={() => this.deletePersonHandler(indexwow)}
-              name={wow.name}
-              age={wow.age}
-              key={wow.id}
-              changedErin={(event) => this.nameChangeHandler(event, wow.id)} />
+            return <ErrorBoundary key={wow.id}>
+              <CanbeAnything
+                click={() => this.deletePersonHandler(indexwow)}
+                name={wow.name}
+                age={wow.age}
+                // key={wow.id}
+                //we remove the key to outer element, must do when we map
+                changedErin={(event) => this.nameChangeHandler(event, wow.id)} />
+            </ErrorBoundary>
           })}
 
           {/* so now we can get rid of below */}
