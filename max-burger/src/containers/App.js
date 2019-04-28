@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 // import React, { useState } from 'react';
 //******above is for hooks******
 import './App.css';
-import CanbeAnything from './Person/Person';
+import CanbeAnything from '../components/Persons/Person/Person';
 // the Person after import can be anything
 
 // import Radium, { StyleRoot } from 'radium';
 
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+// import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 //we are going to test on our <CanbeAnything> which will be wrapped because EB is a higher order component
+
+import Persons from '../components/Persons/Persons'
 
 class App extends Component {
   //state is an object
@@ -100,17 +102,20 @@ class App extends Component {
       persons = (
         //in here we will delete the div of all <CanbeAnything> and copy in hrere
         <div>
-          {this.state.ppl.map((wow, indexwow) => {
-            return <ErrorBoundary key={wow.id}>
-              <CanbeAnything
-                click={() => this.deletePersonHandler(indexwow)}
-                name={wow.name}
-                age={wow.age}
-                // key={wow.id}
-                //we remove the key to outer element, must do when we map
-                changedErin={(event) => this.nameChangeHandler(event, wow.id)} />
-            </ErrorBoundary>
-          })}
+          <Persons
+            ppl={this.state.ppl}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler} />
+
+          {/* {this.state.ppl.map((wow, indexwow) => {
+            return <CanbeAnything
+              click={() => this.deletePersonHandler(indexwow)}
+              name={wow.name}
+              age={wow.age}
+              key={wow.id}
+              //we remove the key to outer element, must do when we map
+              changedErin={(event) => this.nameChangeHandler(event, wow.id)} />
+          })} */}
 
           {/* so now we can get rid of below */}
           {/* <CanbeAnything
