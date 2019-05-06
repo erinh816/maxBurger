@@ -25,6 +25,8 @@ class App extends Component {
     showPersons: false
   }
 
+
+  //(1) click to change name (hardcoded)
   //***commented this handler out for lecture 55, how to convert!!!
   // switchNameHandler = (newName) => {
   //   // console.log('was clicked');
@@ -38,6 +40,7 @@ class App extends Component {
   //   });
   // }
 
+  //(2)click to delete name
   deletePersonHandler = (personIndex) => {
     const deletedperson = this.state.ppl;
     //above is bad practice because it mutetes the original copy we could change it to this.state.ppl.slice()
@@ -47,6 +50,7 @@ class App extends Component {
     this.setState({ deletedperson: deletedperson })
   }
 
+  //(3)Type to change name
   //event is an object, this method we pass to Erin
   nameChangeHandler = (event, id) => {
     const singleIndex = this.state.ppl.findIndex(yay => {
@@ -73,6 +77,7 @@ class App extends Component {
     })
   }
 
+  //(4) click button to hide or show list
   togglePersonsHandler = () => {
     // const doesShow = this.state.showPersons;
     // this.setState({ showPersons: !doesShow })
@@ -116,25 +121,6 @@ class App extends Component {
               //we remove the key to outer element, must do when we map
               changedErin={(event) => this.nameChangeHandler(event, wow.id)} />
           })} */}
-
-          {/* so now we can get rid of below */}
-          {/* <CanbeAnything
-            name={this.state.ppl[0].name}
-            age={this.state.ppl[0].age} />
-
-          <CanbeAnything
-            name={this.state.ppl[1].name}
-            age={this.state.ppl[1].age}
-            click={this.switchNameHandler.bind(this, 'MAXXXXX2.0')}
-            changedErin={this.nameChangeHandler} />
-
-          <CanbeAnything
-            name={this.state.ppl[2].name}
-            age={this.state.ppl[2].age}>My Hobbies:Rave</CanbeAnything>
-
-          <CanbeAnything
-            name="Lucy"
-            age="22" /> */}
         </div>
       );
 
@@ -175,6 +161,9 @@ class App extends Component {
 export default App;
 
 // export default Radium(App); //after we import Radium package
+
+
+
 
 
 //******how to use the new feature hooks******
