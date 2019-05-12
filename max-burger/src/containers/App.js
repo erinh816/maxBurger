@@ -10,7 +10,9 @@ import CanbeAnything from '../components/Persons/Person/Person';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 //we are going to test on our <CanbeAnything> which will be wrapped because EB is a higher order component
 
-import Persons from '../components/Persons/Persons'
+import Persons from '../components/Persons/Persons';
+
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   //state is an object
@@ -87,32 +89,32 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      // ':hover': {
-      //   backgroundColor: 'lightgreen',
-      //   color: 'black'
-      // }
-    };
+    // const style = {
+    //   backgroundColor: 'green',
+    //   color: 'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   // ':hover': {
+    //   //   backgroundColor: 'lightgreen',
+    //   //   color: 'black'
+    //   // }
+    // };
 
     let persons = null;
 
+
     //we can do a regular javaScript syntax here because it's not JSX
     if (this.state.showPersons) {
-      persons = (
+      persons =
         //in here we will delete the div of all <CanbeAnything> and copy in hrere
-        <div>
-          <Persons
-            ppl={this.state.ppl}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangeHandler} />
+        <Persons
+          ppl={this.state.ppl}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangeHandler} />
 
-          {/* {this.state.ppl.map((wow, indexwow) => {
+      {/* {this.state.ppl.map((wow, indexwow) => {
             return <CanbeAnything
               click={() => this.deletePersonHandler(indexwow)}
               name={wow.name}
@@ -121,36 +123,36 @@ class App extends Component {
               //we remove the key to outer element, must do when we map
               changedErin={(event) => this.nameChangeHandler(event, wow.id)} />
           })} */}
-        </div>
-      );
 
-      style.backgroundColor = 'red';
+
+      // style.backgroundColor = 'red';
       // style[':hover'] = {
       //   backgroundColor: 'yellow',
       //   color: 'black'
       // }
+
+
     }
 
     // let classes = ['red', 'bold'].join(' '); //must be a space between''
     //make css dynamic according to the numnber of persons
-    const classes = [];  //using const cause we will never setting a new value
-    if (this.state.ppl.length <= 2) {
-      classes.push('red'); //classes = ['red]
-    }
-    if (this.state.ppl.length <= 1) {
-      classes.push('bold'); //classes=['red','bold']
-    }
+
+    // const classes = [];  //using const cause we will never setting a new value
+    // if (this.state.ppl.length <= 2) {
+    //   classes.push('red'); //classes = ['red]
+    // }
+    // if (this.state.ppl.length <= 1) {
+    //   classes.push('bold'); //classes=['red','bold']
+    // }
 
 
 
     return (
 
       <div className="App">
-        <h1> Hi This is Another Burger App </h1>
-        <p className={classes.join(' ')}> This is really working </p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>NOW I'm Toggle</button>
+        <Cockpit showPersons={this.state.showPersons}
+          persons={this.state.ppl}
+          clicked={this.togglePersonsHandler} />
         {persons}
       </div>
 
